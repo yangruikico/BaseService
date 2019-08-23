@@ -1,0 +1,108 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yrbase">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--<uses-permission android:name="android.permission.CAMERA"/>-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+    <!-- 获取错略位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 改变配置 -->
+    <!-- 定位包、导航包需要的额外权限（注：基础权限也需要） -->
+    <!-- 获取精确位置 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 访问定位额外命令 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- 改变WiFi状态 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 录音 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 拨打电话 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 录视频 -->
+    <!--<uses-permission android:name="android.permission.CAMERA" />-->
+    <!-- camera硬件支持 -->
+    <!-- <uses-feature android:name="android.hardware.camera" />-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 解锁屏幕 -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+
+    <!-- android:sharedUserId="android.uid.system" -->
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <!--<uses-permission android:name="android.permission.RECORD_AUDIO" />-->
+    <uses-permission
+        android:name="android.permission.DEVICE_POWER"
+        tools:ignore="ProtectedPermissions" />
+    <!--<uses-permission android:name="android.permission.WAKE_LOCK" />-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <!-- <uses-permission android:name="android.permission.VIBRATE" />-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!-- 拨号权限 -->
+    <!-- 这个权限用于进行网络定位 -->
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+    <!-- 这个权限用于访问GPS定位 -->
+    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <!--<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
+    <!-- 用于读取手机当前的状态 -->
+    <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
+    <!--<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />-->
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <!-- 显示系统窗口权限 -->
+    <!--<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />-->
+    <!-- 在 屏幕最顶部显示addview -->
+    <!--<uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+-->
+    <!-- 用户信息权限 -->
+    <uses-permission android:name="cybertech.permission.READ_PSTORE_USERINFO" />
+    <!-- 链路信息权限 -->
+    <uses-permission android:name="cybertech.permission.READ_PSTORE_LINKINFO" />
+    <!-- 同步时间权限 -->
+    <uses-permission android:name="cybertech.permission.READ_PSTORE_SERVER_SYNC_TIME" />
+    <!-- 位置信息权限 -->
+    <uses-permission android:name="cybertech.permission.READ_PSTORE_LOCATIONINFO" />
+    <!-- 基础权限：授权认证等 -->
+    <uses-permission android:name="cybertech.permission.READ_PSTORE" />
+    <!-- 提交操作日志的权限 -->
+    <uses-permission android:name="cybertech.permission.WRITE_PSTORE_OPERATIONLOG" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="com.iflytek.yyplus.aidl.permission.OPERATION_HARDWARE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!--拨号权限-->
+    <uses-feature android:name="android.hardware.camera" />
+    <!--传感器-->
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+
+    <application>
+        <provider android:authorities="${applicationId}.permission.provider"
+            android:name=".soulpermission.InitProvider"
+            android:multiprocess="true"
+            android:exported="false"/>
+    </application>
+
+
+
+
+
+
+
+
+</manifest>
