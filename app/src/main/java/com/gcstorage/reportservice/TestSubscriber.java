@@ -1,4 +1,4 @@
-package com.yrbase.custom;
+package com.gcstorage.reportservice;
 
 
 import com.yrbase.utils.LogUtil;
@@ -11,7 +11,7 @@ import rx.Subscriber;
  * Created by kico 2018/5/7on weiniu.
  */
 
-public class MySubscriber<T> extends Subscriber<BaseBean<T>> {
+public class TestSubscriber<T> extends Subscriber<TestBaseBean<T>> {
     @Override
     public void onCompleted() {
 
@@ -36,7 +36,7 @@ public class MySubscriber<T> extends Subscriber<BaseBean<T>> {
     public static final int loginOutStatus = 409;
 
     @Override
-    public void onNext(BaseBean<T> mBaseBean) {
+    public void onNext(TestBaseBean<T> mBaseBean) {
         LogUtil.yangRui().e(mBaseBean);
         if (mBaseBean.status == successStatus) {
             if (mBaseBean.success) {

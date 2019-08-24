@@ -1,4 +1,4 @@
-package com.yrbase.custom;
+package com.gcstorage.reportservice;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by EA on 2018/4/18
  */
 
-public class BaseBean<T> implements Serializable {
+public class TestBaseBean<T> implements Serializable {
     //public int code;
     public String message;//
 
