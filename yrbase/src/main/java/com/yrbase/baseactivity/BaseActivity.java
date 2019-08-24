@@ -14,19 +14,27 @@ import android.widget.LinearLayout;
 
 import com.yrbase.R;
 import com.yrbase.baseactivity.utils.AppManager;
+import com.yrbase.mvp.BasePresenter;
+import com.yrbase.mvp.StateLayout;
+import com.yrbase.utils.LoadingUtils;
+import com.yrbase.utils.TUtil;
 
 
 /**
  * Created by zjs on 2018/3/30.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements StateLayout {
 
 
     private FrameLayout rlContent;
     private Toolbar toolbar;
     private ToolBarX mToolBarX;
 
+    public T mPresenter;
+
+
+    private LoadingUtils loading;
 
     public ToolBarX getToolBarX() {
         if (mToolBarX == null) {
@@ -43,10 +51,18 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         initContentView();
         mToolBarX = new ToolBarX(this, toolbar);
+        mPresenter = TUtil.getT(this, 0);
+        if (mPresenter != null) {
+            mPresenter.setStateLayout(this);
+            initPresenter();
+        }
+
+        loading = new LoadingUtils(this);
 
         AppManager.getAppManager().addActivity(this);
 
     }
+    public abstract void initPresenter();
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -76,4 +92,64 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         AppManager.getAppManager().finishActivity(this);
     }
+
+
+
+    /***************************************************************/
+    @Override
+    public void showContentViewInterface() {
+        //if (currentPage == 1) showContentView();
+    }
+
+    @Override
+    public void showErrorInterface() {
+        //if (currentPage == 1) showError();
+    }
+
+    @Override
+    public void showLoadingInterface() {
+        //showLoading();
+    }
+
+    @Override
+    public void showNODataInterface() {
+       // if (currentPage == 1) showNOData();
+    }
+
+    /***************************************************************/
+
+
+
+    public void showLoading(String message) {
+        if (loading != null && rlContent != null) {
+            loading.setMessage(message);
+            loading.show();
+            rlContent.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dismiss();
+                }
+            }, 3000);
+        }
+
+    }
+
+    public void dismiss() {
+        dismissWithSuccess("");
+    }
+
+    public void dismissWithSuccess(String message) {
+        if (loading != null && loading.isShowing()) {
+            loading.dismissWithSuccess(message);
+        }
+    }
+
+    public void dismissWithFailure(String message) {
+        if (loading != null && loading.isShowing()) {
+            loading.dismissWithFailure(message);
+        }
+    }
+
+
+
 }
