@@ -12,7 +12,7 @@ import rx.Observable;
 
 public interface TestRetrofitService {
 
-    @POST("")
+    @POST("baidu")
     Observable<TestBaseBean<Object>> getRealTimeCsqMsgList(@Body Map<String, Object> map);
 
     @Multipart

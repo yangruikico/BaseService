@@ -32,7 +32,7 @@ public class RetrofitServiceManager {
     private Retrofit mRetrofit;
 
 
-    public static String ENTERPORT;
+    public static String ENTERPORT="http://" + "20.51.3.43" + ":" + "8768" ;
 
     public static Map<String, String> commonParams;
 

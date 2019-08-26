@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yrbase.R;
@@ -28,7 +29,7 @@ public class LoadingUtils extends Dialog {
 
     TextView tvMessage;
     ImageView ivSuccess;
-    ImageView ivFailure;
+    ProgressBar ivFailure;
     ImageView ivProgressSpinner;
     Context context;
 
@@ -50,10 +51,10 @@ public class LoadingUtils extends Dialog {
         this.setCanceledOnTouchOutside(false);
         this.context = context;
         View view =  LayoutInflater.from(context).inflate(R.layout.dialog_progress, null);
-        tvMessage = (TextView) view.findViewById(R.id.textview_message);
-        ivSuccess = (ImageView) view.findViewById(R.id.imageview_success);
-        ivFailure = (ImageView) view.findViewById(R.id.imageview_failure);
-        ivProgressSpinner = (ImageView) view
+        tvMessage = view.findViewById(R.id.textview_message);
+        ivSuccess =  view.findViewById(R.id.imageview_success);
+        ivFailure = view.findViewById(R.id.imageview_failure);
+        ivProgressSpinner = view
                 .findViewById(R.id.imageview_progress_spinner);
 
         this.setContentView(view);
