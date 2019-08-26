@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yrbase.smartlayout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/smartRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    app:srlAccentColor="@color/white"
+    app:srlAccentColor="@android:color/white"
     app:srlDragRate="0.7"
     app:srlEnableHeaderTranslationContent="true"
     app:srlEnableLoadMore="true"
@@ -18,4 +18,4 @@
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
         android:overScrollMode="never" />
-</com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</com.yrbase.smartlayout.SmartRefreshLayout>
