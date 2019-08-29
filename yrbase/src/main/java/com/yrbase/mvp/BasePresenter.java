@@ -1,7 +1,6 @@
 package com.yrbase.mvp;
 
 
-import com.yrbase.utils.LogUtil;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -77,7 +76,6 @@ public abstract class BasePresenter<T> {
     public void onDestroy() {
         if (sCompositeSubscription != null) {
             sCompositeSubscription.unsubscribe();
-            LogUtil.xuTianXiong().Y();
         }
         mView = null;
     }

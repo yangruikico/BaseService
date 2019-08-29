@@ -1,8 +1,9 @@
 package com.yrbase.response;
 
 
+import android.util.Log;
+
 import com.yrbase.BuildConfig;
-import com.yrbase.utils.LogUtil;
 import com.yrbase.utils.SystemUtil;
 import com.yrbase.utils.ViewUtil;
 
@@ -135,7 +136,7 @@ public class RetrofitServiceManager {
                 ViewUtil.Toast("服务器异常,请稍后重试");
             }*/
             String format = String.format("发送请求 %s on %s%n%s", newRequest.url(), chain.connection(), newRequest.headers());
-            LogUtil.yangRui().e(format);
+            Log.e("yangrui","http:"+format);
             return response;
         }
     }

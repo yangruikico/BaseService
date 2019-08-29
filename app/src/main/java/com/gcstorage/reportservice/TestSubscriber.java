@@ -1,7 +1,6 @@
 package com.gcstorage.reportservice;
 
 
-import com.yrbase.utils.LogUtil;
 import com.yrbase.utils.NetworkUtil;
 import com.yrbase.utils.ViewUtil;
 
@@ -28,7 +27,6 @@ public class TestSubscriber<T> extends Subscriber<TestBaseBean<T>> {
 
     @Override
     public void onError(Throwable e) {
-        LogUtil.yangRui().e(e.toString());
         onError(e.getMessage());
     }
 
@@ -37,7 +35,6 @@ public class TestSubscriber<T> extends Subscriber<TestBaseBean<T>> {
 
     @Override
     public void onNext(TestBaseBean<T> mBaseBean) {
-        LogUtil.yangRui().e(mBaseBean);
         if (mBaseBean.status == successStatus) {
             if (mBaseBean.success) {
                 onSuccess(mBaseBean.data);
@@ -47,7 +44,6 @@ public class TestSubscriber<T> extends Subscriber<TestBaseBean<T>> {
             }
         } else if (mBaseBean.status == loginOutStatus) {
 
-            LogUtil.xuTianXiong().e("LoginOut");
             //  ViewUtil.startActivity(LoginOutActivity.class);
 
         } else {
