@@ -7,22 +7,32 @@ import java.io.Serializable;
  */
 
 public class TestBaseBean<T> implements Serializable {
-    //public int code;
-    public String message;//
 
-    public T data;
-    public String errMsg;
-    public boolean success;
-    public int status;
+    public String resultcode;
+    public T response;
+    public String resultmessage;
 
-    @Override
-    public String toString() {
-        return "BaseBean{" +
-                "message='" + message + '\'' +
-                ", data=" + data +
-                ", errMsg='" + errMsg + '\'' +
-                ", success=" + success +
-                ", status=" + status +
-                '}';
+    public String getResultcode() {
+        return resultcode == null ? "" : resultcode;
+    }
+
+    public void setResultcode(String resultcode) {
+        this.resultcode = resultcode;
+    }
+
+    public T getResponse() {
+        return response;
+    }
+
+    public void setResponse(T response) {
+        this.response = response;
+    }
+
+    public String getResultmessage() {
+        return resultmessage == null ? "" : resultmessage;
+    }
+
+    public void setResultmessage(String resultmessage) {
+        this.resultmessage = resultmessage;
     }
 }

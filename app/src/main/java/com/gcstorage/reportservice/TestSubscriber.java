@@ -30,24 +30,21 @@ public class TestSubscriber<T> extends Subscriber<TestBaseBean<T>> {
         onError(e.getMessage());
     }
 
-    public static final int successStatus = 200;
+
+    public static final String successStatus = "0";
+
     public static final int loginOutStatus = 409;
 
     @Override
     public void onNext(TestBaseBean<T> mBaseBean) {
-        if (mBaseBean.status == successStatus) {
-            if (mBaseBean.success) {
-                onSuccess(mBaseBean.data);
-            } else {
-                //ViewUtil.Toast(mBaseBean.errMsg);
-                onError(mBaseBean.errMsg);
-            }
-        } else if (mBaseBean.status == loginOutStatus) {
+        if (mBaseBean.resultcode.equals(successStatus)) {
+            onSuccess(mBaseBean.response);
+        } else if (mBaseBean.resultcode .equals("err") ) {
 
             //  ViewUtil.startActivity(LoginOutActivity.class);
 
         } else {
-            onError(mBaseBean.errMsg);
+            onError("mBaseBean.errMsg");
         }
     }
 

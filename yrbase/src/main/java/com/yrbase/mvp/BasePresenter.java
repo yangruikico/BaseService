@@ -1,7 +1,13 @@
 package com.yrbase.mvp;
 
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
@@ -80,5 +86,33 @@ public abstract class BasePresenter<T> {
         mView = null;
     }
 
+    /**
+     * 将文件集合 转换为 MultipartBody.Part 集合
+     * @param files
+     * @param <T>
+     * @return
+     */
+    public static <T> List<MultipartBody.Part> filesToMultipartBodyPart(List<T> files) {
+        List<MultipartBody.Part> parts = new ArrayList<>();
+
+        File file;
+        for (int i = 0; i < files.size(); i++) {
+            T t = files.get(i);
+            if (t instanceof File) file = (File) t;
+            else if (t instanceof String)
+                file = new File((String) t);//访问手机端的文件资源，保证手机端sdcdrd中必须有这个文件
+            else break;
+
+            String path = file.getPath();
+            String fileStr = path.substring(path.lastIndexOf(".") + 1);
+
+            RequestBody requestBody = RequestBody.create(MediaType.parse("image/" + fileStr), file);
+
+            MultipartBody.Part part = MultipartBody.Part.createFormData("fileName"+(i+1), file.getName(), requestBody);
+            parts.add(part);
+        }
+
+        return parts;
+    }
 
 }

@@ -5,12 +5,9 @@ import com.yrbase.mvp.BasePresenter;
 import com.yrbase.response.HashMapUtil;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 
 /**
  * Created by EA on 2018/4/18
@@ -20,7 +17,8 @@ public class TestPresenter {
 
 
     public interface View {
-        void onSaveSuccess();
+        void onSaveSuccess(List<UrlBean> data);
+        void onError(String str);
     }
 
 
@@ -33,7 +31,6 @@ public class TestPresenter {
                 @Override
                 public void onSuccess(Object data) {
                     super.onSuccess(data);
-                    mView.onSaveSuccess();
                 }
 
                 @Override
@@ -43,7 +40,7 @@ public class TestPresenter {
             };
 
 
-            TestLoadUtils.getInstance().observe(TestLoadUtils.mRetrofitService.getRealTimeCsqMsgList(hashMapUtil)).subscribe(subscriber);
+            //TestLoadUtils.getInstance().observe(TestLoadUtils.mRetrofitService.getRealTimeCsqMsgList(hashMapUtil)).subscribe(subscriber);
 
         }
 
@@ -51,31 +48,39 @@ public class TestPresenter {
 
 
 
-    public void uoLoadImage() {
-        TestSubscriber<Object> subscriber = new TestSubscriber<Object>() {
+        public void uoLoadImage(List<File> datas) {
+            TestSubscriber<List<UrlBean>> subscriber = new TestSubscriber<List<UrlBean>>() {
 
-            @Override
-            public void onSuccess(Object data) {
-                super.onSuccess(data);
-                mView.onSaveSuccess();
+                @Override
+                public void onSuccess(List<UrlBean> data) {
+                    super.onSuccess(data);
+                    mView.onSaveSuccess(data);
+                }
+
+                @Override
+                public void onError(String str) {
+                    super.onError(str);
+                    mView.onError(str);
+                }
+            };
+
+           /* Map<String, RequestBody> bodyMap = new HashMap<>();
+            for (int i = 0; i < datas.size(); i++) {
+
+                String name = datas.get(i).getName();
+
+                LogUtil.yangRui().e(name);
+
+                bodyMap.put("fileName"+(i+1)+"\"; filename=\""+ name, RequestBody.create(MediaType.parse("image/png"),datas.get(i)));//"multipart/form-data"
             }
+            */
+            List<MultipartBody.Part> parts = filesToMultipartBodyPart(datas);
 
-            @Override
-            public void onError(String str) {
-                super.onError(str);
-            }
-        };
 
-        List<MultipartBody.Part> mList = new ArrayList<>();
+            TestLoadUtils.getInstance().observe(TestLoadUtils.mRetrofitService.upLoad(parts)).subscribe(subscriber);
 
-        File file = new File("");
-        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
-        MultipartBody.Part.createFormData("file$i", file.getName(), requestFile);
-
-        TestLoadUtils.getInstance().observe(TestLoadUtils.mRetrofitService.upLoad(mList)).subscribe(subscriber);
-
-    }
+        }
     }
 
 

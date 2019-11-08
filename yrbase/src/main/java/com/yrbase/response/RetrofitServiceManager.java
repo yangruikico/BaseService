@@ -4,6 +4,7 @@ package com.yrbase.response;
 import android.util.Log;
 
 import com.yrbase.BuildConfig;
+import com.yrbase.utils.HttpLoggingInterceptor;
 import com.yrbase.utils.SystemUtil;
 import com.yrbase.utils.ViewUtil;
 
@@ -57,7 +58,8 @@ public class RetrofitServiceManager {
                 .addHeaderParams("app-version", String.valueOf(BuildConfig.VERSION_CODE))
                 .build();
         builder.addInterceptor(commonInterceptor);
-        builder.addInterceptor(new BodyInterceptor());
+        //builder.addInterceptor(new BodyInterceptor());
+        builder.addInterceptor(new HttpLoggingInterceptor());
         //builder.addInterceptor(new LoggingInterceptor());
         // 创建Retrofit
 

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.yrbase.baseactivity.BaseActivity;
 import com.yrbase.utils.ViewUtil;
 
+import java.util.List;
+
 public class TestActivity extends BaseActivity<TestPresenter.Presenter> implements TestPresenter.View {
 
     @Override
@@ -14,22 +16,6 @@ public class TestActivity extends BaseActivity<TestPresenter.Presenter> implemen
         getToolBarX().setCenterText(R.string.app_name);
 
         ViewUtil.Toast(R.string.app_name);
-
-
-
-       /*
-
-
-       Map<String, String> commonParams = new HashMap<>();
-        commonParams.put("moboile", "18871853529");
-        RetrofitServiceManager.ENTERPORT = "http://baidu.com";
-        RetrofitServiceManager.commonParams = commonParams;
-
-
-        */
-
-
-
         mPresenter.getStoreAuto();
 
     }
@@ -40,7 +26,12 @@ public class TestActivity extends BaseActivity<TestPresenter.Presenter> implemen
     }
 
     @Override
-    public void onSaveSuccess() {
+    public void onSaveSuccess(List<UrlBean> data) {
+
+    }
+
+    @Override
+    public void onError(String str) {
 
     }
 }
