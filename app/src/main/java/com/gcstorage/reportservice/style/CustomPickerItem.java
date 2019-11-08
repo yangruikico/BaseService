@@ -11,15 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gcstorage.reportservice.R;
-import com.yrbase.imagepicker.adapter.multi.BaseItemView;
-import com.yrbase.imagepicker.adapter.multi.MultiGridAdapter;
-import com.yrbase.imagepicker.bean.ImageItem;
-import com.yrbase.imagepicker.bean.MultiSelectConfig;
-import com.yrbase.imagepicker.bean.PickerUiConfig;
-import com.yrbase.imagepicker.bean.SelectMode;
-import com.yrbase.imagepicker.presenter.IMultiPickerBindPresenter;
-import com.yrbase.imagepicker.utils.PCornerUtils;
-import com.yrbase.imagepicker.utils.PViewSizeUtils;
+import com.ypx.imagepicker.adapter.multi.BaseItemView;
+import com.ypx.imagepicker.adapter.multi.MultiGridAdapter;
+import com.ypx.imagepicker.bean.ImageItem;
+import com.ypx.imagepicker.bean.MultiSelectConfig;
+import com.ypx.imagepicker.bean.PickerUiConfig;
+import com.ypx.imagepicker.bean.SelectMode;
+import com.ypx.imagepicker.presenter.IMultiPickerBindPresenter;
+import com.ypx.imagepicker.utils.PCornerUtils;
+import com.ypx.imagepicker.utils.PViewSizeUtils;
 
 import java.util.ArrayList;
 

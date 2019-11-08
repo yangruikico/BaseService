@@ -14,12 +14,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.gcstorage.reportservice.R;
-import com.yrbase.imagepicker.bean.CropUiConfig;
-import com.yrbase.imagepicker.bean.ImageItem;
-import com.yrbase.imagepicker.bean.PickConstants;
-import com.yrbase.imagepicker.presenter.ICropPickerBindPresenter;
-import com.yrbase.imagepicker.utils.PCornerUtils;
-import com.yrbase.imagepicker.utils.PViewSizeUtils;
+import com.ypx.imagepicker.bean.CropUiConfig;
+import com.ypx.imagepicker.bean.ImageItem;
+import com.ypx.imagepicker.bean.PickConstants;
+import com.ypx.imagepicker.presenter.ICropPickerBindPresenter;
+import com.ypx.imagepicker.utils.PCornerUtils;
+import com.ypx.imagepicker.utils.PViewSizeUtils;
 
 import java.util.ArrayList;
 

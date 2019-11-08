@@ -15,13 +15,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.request.RequestOptions;
 import com.gcstorage.reportservice.R;
-import com.yrbase.imagepicker.adapter.multi.MultiGridAdapter;
-import com.yrbase.imagepicker.bean.ImageItem;
-import com.yrbase.imagepicker.bean.PickConstants;
-import com.yrbase.imagepicker.bean.PickerUiConfig;
-import com.yrbase.imagepicker.presenter.IMultiPickerBindPresenter;
-import com.yrbase.imagepicker.utils.PCornerUtils;
-import com.yrbase.imagepicker.utils.PViewSizeUtils;
+import com.ypx.imagepicker.adapter.multi.MultiGridAdapter;
+import com.ypx.imagepicker.bean.ImageItem;
+import com.ypx.imagepicker.bean.PickConstants;
+import com.ypx.imagepicker.bean.PickerUiConfig;
+import com.ypx.imagepicker.presenter.IMultiPickerBindPresenter;
+import com.ypx.imagepicker.utils.PCornerUtils;
+import com.ypx.imagepicker.utils.PViewSizeUtils;
 
 import java.util.ArrayList;
 

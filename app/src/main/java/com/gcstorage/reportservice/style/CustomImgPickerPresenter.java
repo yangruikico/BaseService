@@ -11,11 +11,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.gcstorage.reportservice.R;
-import com.yrbase.imagepicker.adapter.multi.MultiGridAdapter;
-import com.yrbase.imagepicker.bean.ImageItem;
-import com.yrbase.imagepicker.bean.PickConstants;
-import com.yrbase.imagepicker.bean.PickerUiConfig;
-import com.yrbase.imagepicker.presenter.IMultiPickerBindPresenter;
+import com.ypx.imagepicker.adapter.multi.MultiGridAdapter;
+import com.ypx.imagepicker.bean.ImageItem;
+import com.ypx.imagepicker.bean.PickConstants;
+import com.ypx.imagepicker.bean.PickerUiConfig;
+import com.ypx.imagepicker.presenter.IMultiPickerBindPresenter;
 
 import java.util.ArrayList;
 

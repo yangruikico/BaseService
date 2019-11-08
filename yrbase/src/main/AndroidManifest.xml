@@ -115,7 +115,7 @@
             android:multiprocess="true" />-->
 
         <provider
-            android:name=".imagepicker.utils.PickerFileProvider"
+            android:name="com.ypx.imagepicker.utils.PickerFileProvider"
             android:authorities="${applicationId}.picker.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -126,22 +126,22 @@
 
 
         <activity
-            android:name=".imagepicker.activity.crop.ImagePickAndCropActivity"
+            android:name="com.ypx.imagepicker.activity.crop.ImagePickAndCropActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <activity
-            android:name=".imagepicker.activity.multi.MultiImagePickerActivity"
+            android:name="com.ypx.imagepicker.activity.multi.MultiImagePickerActivity"
             android:multiprocess="true" />
 
         <activity
-            android:name=".imagepicker.activity.multi.MultiImagePreviewActivity"
+            android:name="com.ypx.imagepicker.activity.multi.MultiImagePreviewActivity"
             android:multiprocess="true" />
 
 
-        <activity android:name=".imagepicker.activity.preview.MediaPreviewActivity" />
+        <activity android:name="com.ypx.imagepicker.activity.preview.MediaPreviewActivity" />
 
         <activity
-            android:name=".imagepicker.activity.singlecrop.SingleCropActivity"
+            android:name="com.ypx.imagepicker.activity.singlecrop.SingleCropActivity"
             android:multiprocess="true" />
 
         <!--
