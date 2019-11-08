@@ -99,18 +99,66 @@
         android:name="android.permission.CHANGE_CONFIGURATION"
         tools:ignore="ProtectedPermissions" />
 
-    <application>
-        <provider android:authorities="${applicationId}.permission.provider"
+    <!-- 读取媒体文件 -->
+    <uses-permission android:name="com.android.providers.media.MediaProvider" />
+
+    <application
+
+        android:allowBackup="true"
+        android:supportsRtl="true">
+
+
+       <!-- <provider
             android:name=".soulpermission.InitProvider"
-            android:multiprocess="true"
-            android:exported="false"/>
+            android:authorities="${applicationId}.permission.provider"
+            android:exported="false"
+            android:multiprocess="true" />-->
+
+        <provider
+            android:name=".imagepicker.utils.PickerFileProvider"
+            android:authorities="${applicationId}.picker.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/picker_file_paths" />
+        </provider>
+
+
+        <activity
+            android:name=".imagepicker.activity.crop.ImagePickAndCropActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name=".imagepicker.activity.multi.MultiImagePickerActivity"
+            android:multiprocess="true" />
+
+        <activity
+            android:name=".imagepicker.activity.multi.MultiImagePreviewActivity"
+            android:multiprocess="true" />
+
+
+        <activity android:name=".imagepicker.activity.preview.MediaPreviewActivity" />
+
+        <activity
+            android:name=".imagepicker.activity.singlecrop.SingleCropActivity"
+            android:multiprocess="true" />
+
+        <!--
+
+        <provider
+             android:name=".utils.PickerFileProvider"
+             android:authorities="${applicationId}.picker.fileprovider"
+             android:exported="false"
+             android:grantUriPermissions="true">
+             <meta-data
+                 android:name="android.support.FILE_PROVIDER_PATHS"
+                 android:resource="@xml/picker_file_paths" />
+         </provider>
+
+         -->
+
     </application>
-
-
-
-
-
-
 
 
 </manifest>

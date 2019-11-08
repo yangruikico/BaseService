@@ -216,7 +216,7 @@ public class SoulPermission {
      * 检查和请求特殊权限
      *
      * @param special  特殊权限、系统弹窗，未知来源
-     *                 {@link com.qw.soul.permission.bean.Special }
+     *                 {@link }
      * @param listener 请求回调
      */
     @MainThread
@@ -316,7 +316,7 @@ public class SoulPermission {
     }
 
 
-    void autoInit(Application application) {
+    public void autoInit(Application application) {
         if (null != globalContext) {
             return;
         }
