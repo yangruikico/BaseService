@@ -4,7 +4,6 @@ package com.yrbase.response;
 import android.util.Log;
 
 import com.yrbase.BuildConfig;
-import com.yrbase.utils.HttpLoggingInterceptor;
 import com.yrbase.utils.SystemUtil;
 import com.yrbase.utils.ViewUtil;
 
@@ -34,7 +33,7 @@ public class RetrofitServiceManager {
     private Retrofit mRetrofit;
 
 
-    public static String ENTERPORT="http://" + "20.51.3.43" + ":" + "8768" ;
+    public static String ENTERPORT = "http://" + "20.51.3.43" + ":" + "8768";
 
     public static Map<String, String> commonParams;
 
@@ -58,8 +57,8 @@ public class RetrofitServiceManager {
                 .addHeaderParams("app-version", String.valueOf(BuildConfig.VERSION_CODE))
                 .build();
         builder.addInterceptor(commonInterceptor);
-        //builder.addInterceptor(new BodyInterceptor());
-        builder.addInterceptor(new HttpLoggingInterceptor());
+        builder.addInterceptor(new BodyInterceptor());
+        //builder.addInterceptor(new HttpLoggingInterceptor());
         //builder.addInterceptor(new LoggingInterceptor());
         // 创建Retrofit
 
@@ -138,7 +137,7 @@ public class RetrofitServiceManager {
                 ViewUtil.Toast("服务器异常,请稍后重试");
             }*/
             String format = String.format("发送请求 %s on %s%n%s", newRequest.url(), chain.connection(), newRequest.headers());
-            Log.e("yangrui","http:"+format);
+            Log.e("yangrui", "http:" + format);
             return response;
         }
     }

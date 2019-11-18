@@ -2,9 +2,6 @@ package com.yrbase.utils;
 
 
 import android.util.Log;
-
-import com.yrbase.BuildConfig;
-
 import java.util.Hashtable;
 
 /**
@@ -13,7 +10,7 @@ import java.util.Hashtable;
  * @author kesenhoo
  */
 public class LogUtil {
-    private final static boolean logFlag = BuildConfig.DEBUG;
+    public static boolean logFlag = true;
 
     //private final static boolean logFlag = true;
 
