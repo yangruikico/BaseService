@@ -58,6 +58,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+/*
+*
+* https://github.com/yangpeixing/YImagePicker/wiki/YImagePicker
+* */
 
 public class ImagePickerActivity extends BaseActivity<TestPresenter.Presenter> implements TestPresenter.View {
     private ArrayList<ImageItem> picList = new ArrayList<>();
