@@ -35,7 +35,7 @@ import static android.os.Build.VERSION_CODES.KITKAT;
 import static android.os.Build.VERSION_CODES.O;
 
 /**
- * @author cd5160866
+ * @author cd5160866 https://github.com/soulqw/SoulPermission
  */
 public class SoulPermission {
 
