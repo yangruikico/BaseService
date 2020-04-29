@@ -8,8 +8,15 @@ public class UrlBean {
      * url : http://47.107.134.212:13922/group1/default/20191107/10/27/8/1573093631259.png
      */
 
+
+
     private String md5;
     private String url;
+
+    public UrlBean(String md5, String url) {
+        this.md5 = md5;
+        this.url = url;
+    }
 
     public String getMd5() {
         return md5;

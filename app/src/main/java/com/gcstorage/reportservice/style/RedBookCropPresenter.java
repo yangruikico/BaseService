@@ -161,6 +161,8 @@ public class RedBookCropPresenter implements ICropPickerBindPresenter {
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
+
+
         return true;
     }
 

@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.gcstorage.reportservice.imageutil.ImageLoader;
 import com.gcstorage.reportservice.style.CustomImgPickerPresenter;
 import com.gcstorage.reportservice.style.RedBookCropPresenter;
 import com.gcstorage.reportservice.style.WXImgPickerPresenter;
@@ -121,7 +122,7 @@ public class ImagePickerActivity extends BaseActivity<TestPresenter.Presenter> i
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RetrofitServiceManager.ENTERPORT = "http://120.79.194.253:8768";
+        RetrofitServiceManager.ENTERPORT = "http://113.57.92.149:8768/";
 
         getToolBarX().setCenterText("多文件上传").setRightText("发布朋友圈").setRightTextOnClickListener(new OnPerfectClickListener() {
             @Override
@@ -215,7 +216,11 @@ public class ImagePickerActivity extends BaseActivity<TestPresenter.Presenter> i
         fileCommonAdapter = new CommonAdapter<File>(this, R.layout.item_file_image, null) {
             @Override
             protected void convert(ViewHolder holder, File file, int position) {
-                Glide.with(ImagePickerActivity.this).load(file).into((ImageView) holder.getView(R.id.image));
+
+
+                ImageLoader.getInstance().load(ImagePickerActivity.this, (ImageView) holder.getView(R.id.image),file.getPath(), R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round);
+
+
             }
         };
         recyclerView.setAdapter(fileCommonAdapter);
