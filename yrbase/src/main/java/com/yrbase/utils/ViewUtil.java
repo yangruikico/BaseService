@@ -16,6 +16,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
+import android.support.annotation.DimenRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -1090,6 +1091,17 @@ public class ViewUtil {
     @ColorInt
     public static int getColor(int colorId) {
         return ContextCompat.getColor(SoulPermission.getInstance().getContext(), colorId);
+    }
+
+
+    /**
+     * 获取 dimens 资源文件 指定 id 的资源
+     *
+     * @param dimenId 资源id
+     * @return dimen 值
+     */
+    public static float getDimen(@DimenRes int dimenId) {
+        return SoulPermission.getInstance().getContext().getResources().getDimension(dimenId);
     }
 
 
