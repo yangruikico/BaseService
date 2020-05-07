@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-aspectjx'
 
 android {
     compileSdkVersion 28
@@ -19,12 +20,15 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation "com.android.support:recyclerview-v7:28.0.0"
+
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     implementation 'org.greenrobot:eventbus:3.1.1'
 
+    compile 'com.ninetripods:aop-permission:1.2.0'
 
     implementation project(path: ':yrbase')// implementation 'com.github.yangrui8:BaseService:1.0'
 }

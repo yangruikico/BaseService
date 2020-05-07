@@ -106,13 +106,19 @@ public abstract class BasePresenter<T> {
             String path = file.getPath();
             String fileStr = path.substring(path.lastIndexOf(".") + 1);
 
+            //RequestBody requestBody = RequestBody.create(MediaType.parse("image/" + fileStr), file);
             RequestBody requestBody = RequestBody.create(MediaType.parse("image/" + fileStr), file);
 
             MultipartBody.Part part = MultipartBody.Part.createFormData("fileName"+(i+1), file.getName(), requestBody);
             parts.add(part);
+
+
         }
 
         return parts;
     }
+
+
+
 
 }

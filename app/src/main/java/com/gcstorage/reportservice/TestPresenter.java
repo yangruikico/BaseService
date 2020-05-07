@@ -74,6 +74,8 @@ public class TestPresenter {
                 bodyMap.put("fileName"+(i+1)+"\"; filename=\""+ name, RequestBody.create(MediaType.parse("image/png"),datas.get(i)));//"multipart/form-data"
             }
             */
+
+
             List<MultipartBody.Part> parts = filesToMultipartBodyPart(datas);
 
 

@@ -3,19 +3,32 @@ package com.gcstorage.reportservice;
 import android.Manifest;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.ninetripods.aopermission.permissionlib.annotation.NeedPermission;
+import com.ninetripods.aopermission.permissionlib.annotation.PermissionCanceled;
+import com.ninetripods.aopermission.permissionlib.annotation.PermissionDenied;
+import com.ninetripods.aopermission.permissionlib.bean.CancelBean;
+import com.ninetripods.aopermission.permissionlib.bean.DenyBean;
 import com.yrbase.baseactivity.BaseActivity;
 import com.yrbase.soulpermission.SoulPermission;
 import com.yrbase.soulpermission.bean.Permission;
+import com.yrbase.soulpermission.bean.Permissions;
 import com.yrbase.soulpermission.callbcak.CheckRequestPermissionListener;
+import com.yrbase.soulpermission.callbcak.CheckRequestPermissionsListener;
+import com.yrbase.utils.LogUtil;
 import com.yrbase.utils.OnPerfectClickListener;
+import com.yrbase.utils.ShapeBuilder;
 import com.yrbase.utils.SpanUtils;
 import com.yrbase.utils.ViewUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.lang.ref.WeakReference;
+import java.util.Arrays;
 import java.util.List;
 
 public class TestActivity extends BaseActivity<TestPresenter.Presenter> implements TestPresenter.View {
@@ -31,11 +44,11 @@ public class TestActivity extends BaseActivity<TestPresenter.Presenter> implemen
             @Override
             protected void onNoDoubleClick(View v) {
                 ViewUtil.startActivity(ImagePickerActivity.class);
-                ViewUtil.Toast("图片选择");
+                //ViewUtil.Toast("图片选择");
 
                 //主线程中调用：
-                //mHandler.postDelayed(r, 1000);//延时100毫秒
-
+                //mHandler.postDelayed(runnable, 1000);//延时100毫秒
+                callMap();
 
             }
         });
@@ -43,7 +56,7 @@ public class TestActivity extends BaseActivity<TestPresenter.Presenter> implemen
         //ViewUtil.Toast(R.string.app_name);
         mPresenter.getStoreAuto();
 
-        testPermission();
+        //testPermission();
 
 
         TextView viewById = findViewById(R.id.tv);
@@ -54,6 +67,10 @@ public class TestActivity extends BaseActivity<TestPresenter.Presenter> implemen
                 .stroke(ViewUtil.dp2px(2),R.color.colorPrimary)
                 .setBackBg(viewById);*/
 
+        ShapeBuilder.create().radiusDp(2).solid(R.color.colorAccent)
+                .stroke(ViewUtil.dp2px(2),R.color.colorPrimary)
+                .setBackBg(viewById);
+
 
         SpanUtils.Builder builder = SpanUtils.getBuilder("前置文字:")
                 .setFgColor(R.color.colorAccent).setTextDpSize(R.dimen.txt_small_much)
@@ -62,6 +79,32 @@ public class TestActivity extends BaseActivity<TestPresenter.Presenter> implemen
         viewById.setText(builder.create());
     }
 
+
+    /**
+     * 权限被拒绝
+     *
+     * @param bean DenyBean
+     */
+    @PermissionDenied
+    public void dealPermission(DenyBean bean) {//不在询问的拒绝
+        LogUtil.yangRui().e("权限被拒绝");
+
+        Toast.makeText(this,
+                "requestCode:权限被拒绝" + bean.getRequestCode() + ",Permissions: " + Arrays.toString(bean.getDenyList().toArray()), Toast.LENGTH_SHORT).show();
+
+    }
+
+    /**
+     * 权限被取消
+     *
+     * @param bean CancelBean
+     */
+    @PermissionCanceled
+    public void dealCancelPermission(CancelBean bean) {//拒绝
+        LogUtil.yangRui().e("权限被取消");
+        Toast.makeText(this, "requestCode:权限被取消" + bean.getRequestCode(), Toast.LENGTH_SHORT).show();
+
+    }
 
     @Override
     public void initPresenter() {
@@ -73,8 +116,34 @@ public class TestActivity extends BaseActivity<TestPresenter.Presenter> implemen
 
     }
 
-    final Handler mHandler = new Handler();
-    Runnable r = new Runnable() {
+    MyHandler mHandler = new MyHandler(this);
+
+
+
+    /**
+     * 声明一个静态的Handler内部类，并持有外部类的弱引用
+     */
+    private static class MyHandler extends Handler{
+
+        private final WeakReference<TestActivity> mActivity;
+
+        private MyHandler(TestActivity mActivity) {
+            this.mActivity = new WeakReference<>(mActivity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            TestActivity activity = mActivity.get();
+            if (activity != null){
+                // ....
+                activity.callMap();
+
+            }
+        }
+    }
+
+    Runnable runnable = new Runnable() {
 
         @Override
         public void run() {
@@ -86,6 +155,13 @@ public class TestActivity extends BaseActivity<TestPresenter.Presenter> implemen
         }
     };
 
+    /**
+     * 申请权限
+     */
+    @NeedPermission(value = {Manifest.permission.ACCESS_FINE_LOCATION}, requestCode = 10)
+    private void callMap() {
+        Toast.makeText(this, "定位权限申请通过", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onError(String str) {
@@ -106,6 +182,25 @@ public class TestActivity extends BaseActivity<TestPresenter.Presenter> implemen
                         ViewUtil.Toast(permission.toString() + "\n is refused you can not do next things");
                     }
                 });
+
+        SoulPermission.getInstance().checkAndRequestPermissions(
+                Permissions.build(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                //if you want do noting or no need all the callbacks you may use SimplePermissionsAdapter instead
+                new CheckRequestPermissionsListener() {
+                    @Override
+                    public void onAllPermissionOk(Permission[] allPermissions) {
+                        ViewUtil.Toast(allPermissions.length + "permissions is ok" +
+                                " \n  you can do your operations");
+
+                    }
+
+                    @Override
+                    public void onPermissionDenied(Permission[] refusedPermissions) {
+                        ViewUtil.Toast(refusedPermissions[0].toString() +
+                                " \n is refused you can not do next things");
+                    }
+                });
+
     }
 
 }
